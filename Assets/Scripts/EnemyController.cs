@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public EnemyData enemyData;
+
+    private float maxHealth;
+    private float attackDamage;
+    private float mass;
+
+    private float _health;
+    public float health {
+        get
+        {
+            return _health;
+        }
+
+        set
+        {
+            if (value > maxHealth)
+            {
+                _health = maxHealth;
+            }
+            else
+            {
+                _health = value;
+            }
+        }
+            }
+
+
     void Start()
     {
-        
+        maxHealth = enemyData.maxHealth;
+        attackDamage = enemyData.attackDamage;
+        mass = enemyData.mass;
+
+        health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OnDamage(float damage)
     {
-        
+        health -= damage;
+        Debug.Log(name + "has taken " + damage);
     }
 }
