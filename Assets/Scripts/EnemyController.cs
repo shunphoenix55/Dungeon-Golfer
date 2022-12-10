@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public EnemyData enemyData;
+
+    public Slider healthSlider;
 
     private float maxHealth;
     private float attackDamage;
     private float mass;
 
     private float _health;
-    public float health {
+    public float health
+    {
         get
         {
             return _health;
@@ -26,9 +30,10 @@ public class EnemyController : MonoBehaviour
             else
             {
                 _health = value;
+                healthSlider.value = _health / maxHealth;
             }
         }
-            }
+    }
 
 
     void Start()
@@ -45,5 +50,18 @@ public class EnemyController : MonoBehaviour
     {
         health -= damage;
         Debug.Log(name + "has taken " + damage);
+
+        if (health <= 0f)
+        {
+            OnDeath();
+        }
     }
+
+    public void OnDeath(
+)
+    {
+        Debug.Log(name + " destroyed");
+        Destroy(gameObject);
+    }
+
 }
