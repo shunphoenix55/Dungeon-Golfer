@@ -36,12 +36,13 @@ public class DragAndShoot : MonoBehaviour
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         Physics.Raycast(cameraRay, out RaycastHit hit);
-        directionIndicator.transform.position = hit.point;
+        directionIndicator.transform.position = -hit.point;//so that the pointer is in the opposite direction
+        
     }
 
     private void OnMouseUp()
     {
-        mouseReleasePos = directionIndicator.transform.position;
+        mouseReleasePos = -directionIndicator.transform.position;//changing the direction again so that correct mouse position is calculated
         Shoot(mouseReleasePos - mousePressDownPos);
         directionIndicator.SetActive(false);
     }
@@ -51,7 +52,7 @@ public class DragAndShoot : MonoBehaviour
         //if (isShoot)
         //    return;
 
-        rb.AddForce(Force * forceMultiplier);
+        rb.AddForce(-Force * forceMultiplier);
         isShoot = true;
     }
 
