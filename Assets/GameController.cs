@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //BUG: the velocit
+        //BUG: the velocity doesn't reset to zero when doing this
         if (player.transform.position.y <= outOfBoundsPos.position.y)
         {
             rbPlayer.velocity = Vector3.zero;
