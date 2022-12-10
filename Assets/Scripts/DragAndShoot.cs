@@ -6,11 +6,13 @@ public class DragAndShoot : MonoBehaviour
 {
     [SerializeField]
     private Camera mainCamera;
+    public GolfClub golfClub;
 
     // object to show the direction the ball is going 
     public GameObject directionIndicator;
 
-    public float forceMultiplier = 300;
+    private float forceMultiplier;
+    private float heightMultiplier;
 
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
@@ -24,6 +26,9 @@ public class DragAndShoot : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         //rbIndicator = directionIndicator.GetComponent<Rigidbody>();
+
+        forceMultiplier = golfClub.forceMultiplier;
+        heightMultiplier = golfClub.heightMultiplier;
     }
 
     // Called when mouse is pressed over the collider
@@ -39,7 +44,11 @@ public class DragAndShoot : MonoBehaviour
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         Physics.Raycast(cameraRay, out RaycastHit hit);
-        directionIndicator.transform.position = mousePressDownPos - (hit.point - mousePressDownPos);//so that the pointer is in the opposite direction
+        Vector3 difference = (hit.point - mousePressDownPos);
+        // so that the difference in height doesn't matter
+        // can be changed later or offset can be created if needed
+        difference = new Vector3(difference.x, -difference.magnitude*heightMultiplier, difference.z); 
+        directionIndicator.transform.position = mousePressDownPos - difference;//so that the pointer is in the opposite direction
         
     }
 

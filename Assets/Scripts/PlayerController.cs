@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
 
+            // Damage inflicted depends on velocity of the player
             float attackMagnitude = rb.velocity.magnitude * attackMultiplier;
 
             enemyController.OnDamage(attackMagnitude);

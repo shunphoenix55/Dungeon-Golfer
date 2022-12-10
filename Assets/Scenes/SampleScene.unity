@@ -565,8 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 330585545}
+  golfClub: {fileID: 11400000, guid: b611cd1db8a7d4740a2abd9751355341, type: 2}
   directionIndicator: {fileID: 2102731964}
-  forceMultiplier: 300
 --- !u!114 &933991254
 MonoBehaviour:
   m_ObjectHideFlags: 0
