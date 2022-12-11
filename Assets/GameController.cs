@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
         if (player.transform.position.y <= outOfBoundsPos.position.y)
         {
             rbPlayer.velocity = Vector3.zero;
+            rbPlayer.angularVelocity = Vector3.zero;
             rbPlayer.MovePosition(spawnPosition.position);
         }
     }
